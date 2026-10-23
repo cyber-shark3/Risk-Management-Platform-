@@ -81,4 +81,5 @@ def test_risk_calculator_route():
         "volume_step": "0.01", "minimum_volume": "0.01"
     })
     assert response.status_code == 200
-    assert response.json()["recommended_volume"] == "20.00"
+    from decimal import Decimal
+    assert Decimal(response.json()["recommended_volume"]) == Decimal("20.00")
