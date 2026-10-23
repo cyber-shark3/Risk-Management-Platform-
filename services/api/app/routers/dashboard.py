@@ -52,7 +52,7 @@ def dashboard_summary(user: User = Depends(get_current_user), db: Session = Depe
         "known_stop_risk": "0" if not positions else None,
         "gross_exposure": str(portfolio.gross_exposure) if portfolio else None,
         "exposure_percent": str(portfolio.exposure_percent) if portfolio and portfolio.exposure_percent is not None else None,
-        "data_status": "STALE" if stale else "FRESH", "last_snapshot_at": latest.isoformat() if latest else None,
+        "data_status": "STALE" if stale else "FRESH", "data_source": "MANUAL_SNAPSHOT", "last_snapshot_at": latest.isoformat() if latest else None,
         "warnings": warnings,
         "mode": "read-only", "trading_execution": "disabled",
     }
