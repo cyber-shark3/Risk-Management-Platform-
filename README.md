@@ -34,21 +34,29 @@ A read-only risk-management and trading-decision-support platform for retail tra
 9. Tests must cover financial edge cases before live broker data is enabled.
 10. No live trading execution in this project without a separate, explicit product and safety review.
 
-## Proposed repository layout
+## Repository layout
 ```text
-apps/web/                 Next.js web application
+apps/web/                 Next.js web application (planned)
 services/api/             FastAPI application and API routes
 packages/risk_engine/     Standalone deterministic risk calculations
-integrations/mt5/         MT5 read-only connector and protocol
+integrations/mt5/         MT5 read-only connector (planned)
 integrations/mt4/         Future MT4 connector (not in initial scope)
 docs/                     Requirements, architecture, formulas, security
-infrastructure/           Docker and deployment configuration
-scripts/                  Development and validation helpers
-tests/                    Contract and end-to-end tests
+infrastructure/           Docker and deployment configuration (planned)
+scripts/                  Development and validation helpers (planned)
+tests/                    Contract and end-to-end tests (planned)
 ```
 
-## Status
-**Phase 0 — repository foundation.** The system is being built in small, testable stages. Do not treat this repository as production-ready until implementation, security review, broker integration testing, and deployment checks have been completed.
+## Current implementation status
+**Phase 1 — foundation started**
+- Product requirements, architecture, financial formula notes, risk-policy rules, and initial threat model.
+- Standalone Python position-sizing calculation using `Decimal`.
+- Conservative volume-step rounding; missing stop-loss returns `INSUFFICIENT_DATA`; broker minimum volume never forces oversizing.
+- Initial unit tests for position sizing and edge cases.
+- Minimal FastAPI service with health and API discovery endpoints.
+- GitHub Actions workflow for risk-engine tests and linting.
+
+**Not implemented yet:** user authentication, database persistence, account ownership enforcement, dashboard, MT5 connector, alert delivery, full portfolio risk, and deployment. Do not expose this scaffold publicly or connect real trading accounts yet.
 
 ## Getting started
-The application scaffold and developer setup instructions will be added incrementally. Never commit real credentials, account identifiers, customer data, or production secrets.
+See [docs/development-setup.md](docs/development-setup.md). Never commit real credentials, account identifiers, customer data, or production secrets.
